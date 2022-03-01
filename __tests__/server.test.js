@@ -2,7 +2,17 @@
 const server = require('../src/server')
 const supertest = require('supertest');
 const request = supertest(server.start)
+const { db } = require('../src/models/index')
 let id;
+
+beforeAll(async () => {
+    await db.sync()
+
+})
+afterAll(async () => {
+    await db.drop()
+
+})
 describe('testing API', () => {
 
     it("test home route", async () => {
@@ -33,7 +43,7 @@ describe("testing clothes route", () => {
     it('test added new clothes post', async () => {
         let response = await request.post('/clothes')
             .send({
-                clothesType: "Casual wear ", clothesSize: "[s,m,L,XL,XXL]"
+                clothesType: "test", clothesSize: "test"
             })
         expect(response.status).toEqual(201)
         id = response.body.id
@@ -48,7 +58,7 @@ describe("testing clothes route", () => {
 
     it('test update clothes by id', async () => {
         let response = await request.put(`/clothes/${id}`).send({
-            clothesType: "Business attire", clothesSize: "[XL,XXL]"
+            clothesType: "test", clothesSize: "test"
         })
         expect(response.status).toEqual(201)
 
@@ -72,7 +82,7 @@ describe("testing food route", () => {
 
     it('test added new food post', async () => {
         let response = await request.post('/food').send({
-            foodName: "Mansaf(The National Dish)", amountFood: "Big amount form meat and rice"
+            foodName: "test", amountFood: "test"
         })
         expect(response.status).toEqual(201)
         id = response.body.id
@@ -87,7 +97,7 @@ describe("testing food route", () => {
 
     it('update food by id', async () => {
         let response = await request.put(`/food/${id}`).send({
-            foodName: "Yalanji", amountFood: "where vine leaves are stuffed with rice and vegetables"
+            foodName: "test", amountFood: "test"
         })
         expect(response.status).toEqual(201)
 

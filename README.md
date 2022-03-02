@@ -6,6 +6,6 @@
 
 |   Name |  Links  |
 |--- |--- |
-|  Heroku link |    |
-|  Actions |   |
-|  PR |   |
+|  Heroku link |[Heroku link](https://basic-api-server-mujahed.herokuapp.com/)    |
+|  Actions |[Actions ](https://github.com/Mujahedyousef/basic-api-server/actions)   |
+|  PR | [Link PR](https://github.com/Mujahedyousef/basic-api-server/pull/2)  |

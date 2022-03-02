@@ -1,7 +1,7 @@
 "use strict";
 const server = require('../src/server')
 const supertest = require('supertest');
-const request = supertest(server.start)
+const request = supertest(server.app)
 const { db } = require('../src/models/index')
 let id;
 
@@ -21,13 +21,13 @@ describe('testing API', () => {
     });
 
     it("test 404 on a bad route", async () => {
-        let response = await request.get('/notFound')
-        expect(response.status).toEqual(404)
+        let response = await request.get('/wrong')
+        expect(response.status).toEqual(404);
     });
 
     it("404 on a bad method", async () => {
-        let response = await request.head('/clothes')
-        expect(response.status).toEqual(404)
+        let response = await request.post('/clothes/8')
+        expect(response.status).toEqual(404);
     });
 })
 
